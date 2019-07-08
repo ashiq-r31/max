@@ -9,6 +9,7 @@ function ArtistDetails({ match }) {
   const artistID = match.params.id;
   useEffect(() => {
     const getArtist = async artistID => {
+      dispatch({ type: "LOADING" });
       try {
         const results = await fetchApi(`/artists/${artistID}`);
         dispatch({
@@ -21,6 +22,7 @@ function ArtistDetails({ match }) {
     };
 
     const getSimilar = async artistID => {
+      dispatch({ type: "LOADING" });
       try {
         const results = await fetchApi(`/artists/${artistID}/similar`);
         dispatch({
@@ -42,7 +44,7 @@ function ArtistDetails({ match }) {
   return details && related ? (
     <div>
       <h1>{details.name}</h1>
-      <Details details={details} />
+      <Details details={details[0]} />
       <br />
       <h3>Related artists</h3>
       <ul>

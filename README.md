@@ -1,3 +1,19 @@
+# MAX
+
+The app has three pages as described in the requirements:
+
+- Home (to search genres and artists)
+- My List (to display artists added to the list)
+- ArtistDetails (to display details about an artist and related artist)
+
+Considering scope creep, here are a few things to address:
+
+- Instead of a dropdown of suggestions while searching genre, I've created an unordered list under the input element.
+- The empty state on My List and Artist pages aren't styled to be in the center
+- The authorization key would be safer in an .env file with the REST calls happening in a server. It's exposed to the front-end at the moment.
+- Navigating between routes will show that the search results persist. Haven't come around to clearing it.
+- The reducer has a `LOADING` and `ERROR` switch case that I haven't used in a meaningful way. Ideally `LOADING` and `ERROR` switch cases aren't generic and indicate which service is loading or resulted in an error. Creating an empty state, loading state, error state would've been great but didn't get around to it.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
