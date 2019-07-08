@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  margin-top: 16px;
+}
+
+.nav-link {
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.back-to-search {
+  background: rgb(208, 205, 205);
+  color: black;
+}
+
+.my-list {
+  background: rgb(91, 187, 91);
+  color: white;
+  margin-left: auto;
+}
