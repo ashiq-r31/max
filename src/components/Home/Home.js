@@ -40,7 +40,6 @@ function Home() {
 
   const debounceSearch = debounce(value => getGenres(value), 500);
 
-  console.log(state);
   return (
     <div>
       <h1>MAX</h1>

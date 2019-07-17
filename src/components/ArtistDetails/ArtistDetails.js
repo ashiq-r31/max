@@ -7,6 +7,7 @@ import { fetchApi } from "../../utils";
 function ArtistDetails({ match }) {
   const { state, dispatch } = useContext(Context);
   const artistID = match.params.id;
+
   useEffect(() => {
     const getArtist = async artistID => {
       try {

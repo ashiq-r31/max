@@ -8,7 +8,6 @@ export const initialState = {
 };
 
 export const reducer = (state, action) => {
-  console.log(action.type);
   switch (action.type) {
     case "GET_GENRES_SUCCESS":
       return { ...state, genres: action.payload };
