@@ -14,7 +14,7 @@ function Card({ artist, state, dispatch }) {
   ) : (
     <button
       className="btn"
-      onClick={() => dispatch({ type: "REMOVE_TO_LIST", payload: artist })}
+      onClick={() => dispatch({ type: "REMOVE_FROM_LIST", payload: artist })}
     >
       Remove
     </button>

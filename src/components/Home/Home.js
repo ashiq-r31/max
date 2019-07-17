@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Context from "../../context";
 import Card from "../shared/Card";
 import "./Home.css";
@@ -8,13 +8,18 @@ function Home() {
   const { state, dispatch } = useContext(Context);
   const [searchText, updateSearch] = useState("");
 
+  useEffect(() => {
+    return function cleanup() {
+      dispatch({ type: "RESET_ARTISTS" });
+    };
+  }, [dispatch]);
+
   const getGenres = async keyword => {
     updateSearch(keyword);
     if (keyword.length === 0) {
       dispatch({ type: "RESET_GENRES" });
       return;
     }
-    dispatch({ type: "LOADING" });
     try {
       const results = await fetchApi(`/genres?q=${keyword}`);
       dispatch({ type: "GET_GENRES_SUCCESS", payload: results.data });
@@ -23,11 +28,8 @@ function Home() {
     }
   };
 
-  const debounceSearch = debounce(value => getGenres(value), 500);
-
   const getArtists = async genreID => {
     dispatch({ type: "RESET_GENRES" });
-    dispatch({ type: "LOADING" });
     try {
       const results = await fetchApi(`/genres/${genreID}/artists`);
       dispatch({ type: "GET_ARTISTS_SUCCESS", payload: results.data });
@@ -36,6 +38,9 @@ function Home() {
     }
   };
 
+  const debounceSearch = debounce(value => getGenres(value), 500);
+
+  console.log(state);
   return (
     <div>
       <h1>MAX</h1>

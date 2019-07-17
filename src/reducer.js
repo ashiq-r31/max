@@ -4,25 +4,20 @@ export const initialState = {
   list: {},
   similar: {},
   details: {},
-  loading: false,
   error: false
 };
 
 export const reducer = (state, action) => {
-  const loadingState = { ...state, loading: true };
-  const errorState = { ...state, loading: false, error: true };
-
+  console.log(action.type);
   switch (action.type) {
-    case "LOADING":
-      return loadingState;
-    case "ERROR":
-      return errorState;
     case "GET_GENRES_SUCCESS":
-      return { ...state, loading: false, genres: action.payload };
+      return { ...state, genres: action.payload };
     case "RESET_GENRES":
       return { ...state, genres: [] };
     case "GET_ARTISTS_SUCCESS":
-      return { ...state, loading: false, artists: action.payload };
+      return { ...state, artists: action.payload };
+    case "RESET_ARTISTS":
+      return { ...state, artists: [] };
     case "ADD_TO_LIST":
       return {
         ...state,
@@ -31,13 +26,12 @@ export const reducer = (state, action) => {
           [action.payload.id]: { ...action.payload }
         }
       };
-    case "REMOVE_TO_LIST":
+    case "REMOVE_FROM_LIST":
       const { [action.payload.id]: value, ...list } = state.list;
       return { ...state, list };
     case "GET_ARTIST_DETAIL_SUCCESS":
       return {
         ...state,
-        loading: false,
         details: {
           ...state.details,
           [action.payload.id]: action.payload.detail
